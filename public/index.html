@@ -1,0 +1,121 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mattis Youtube Downloader!!</title>
+</head>
+<body style="background-image: url(https://uhdwallpapers.org/uploads/converted/20/10/18/macos-big-sur-wallpaper-2560x1440_897485-mm-90.webp); background-size: cover;">
+  <center><h1>Mattis Youtube Downloader!!</h1></center>
+  <div style="margin-top: 11%;">
+
+    <center><label for="videoUrl" style="color: white; font-size: 20px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Enter YouTube Video URL:</label><br>
+    <input class="blurdiv2" type="text" style="width: 20%; height: 60px; color: white; font-size: 24px;" id="videoUrl" name="videoUrl"><br>
+    <h1 style="font-size: 18px;">Choose Format</h1>
+    <div>
+      <button id="mp3" class="blurdiv" style="font-size: 16px; width: 5%; height: 50px; border-color: black;">Mp3</button>
+      <button id="mp4" class="blurdiv" style="font-size: 16px; width: 5%; height: 50px; border-color: rgba(255, 255, 255, 0.34);">Mp4</button>
+    </div>  
+
+    <button id="submitbtn" style="color: white; margin-top: 2%; width: 25%; height: 100px;" class="buttonhover">Download Video</button>
+  </center>
+</div>
+  <script>
+    var currentFormat = "mp3";
+    const mp3btn = document.getElementById("mp3");
+    const mp4btn = document.getElementById("mp4");
+
+    mp3btn.onclick = function() {
+      currentFormat = "mp3";
+      mp3btn.style.borderColor = "Black";
+      mp4btn.style.borderColor = "rgba(255, 255, 255, 0.34)";
+    }
+
+    mp4btn.onclick = function() {
+      currentFormat = "mp4";
+      mp3btn.style.borderColor = "rgba(255, 255, 255, 0.34)";
+      mp4btn.style.borderColor = "Black";
+    }
+    // Form submission handler
+    document.getElementById('submitbtn').onclick = function() {
+      event.preventDefault();
+      var videoUrl = document.getElementById('videoUrl').value;
+      if (currentFormat == "mp4") {
+        window.location.href = '/downloadmp4?url=' + encodeURIComponent(videoUrl);
+      }
+
+      if (currentFormat == "mp3") {
+        window.location.href = '/downloadmp3?url=' + encodeURIComponent(videoUrl);
+      }
+    }
+
+
+  </script>
+</body>
+</html>
+
+<style>
+  h1 {
+  color: white;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+  
+  button {
+    cursor: pointer;
+      font-size: 44px;
+      transition: 200ms;
+      scale: 1;
+      color: white;
+  }
+
+  .buttonhover {
+      cursor: pointer;
+      font-size: 44px;
+      transition: 200ms;
+      scale: 1;
+      color: white;
+
+      background: rgba(255, 255, 255, 0.123);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(8.7px);
+  -webkit-backdrop-filter: blur(8.7px);
+  border: 1px solid rgba(255, 255, 255, 0.34);
+  }
+
+  .buttonhover:hover {
+      transition: 200ms;
+      scale: 1.1;
+  }
+
+  .blurdiv {
+  /* From https://css.glass */
+  background: rgba(255, 255, 255, 0.123);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(8.7px);
+  -webkit-backdrop-filter: blur(8.7px);
+  border: 1px solid rgba(255, 255, 255, 0.34);
+  }
+
+  .blurdiv2 {
+  /* From https://css.glass */
+  background: rgba(255, 255, 255, 0.055);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(8.7px);
+  -webkit-backdrop-filter: blur(8.7px);
+  border: 1px solid rgba(255, 255, 255, 0.26);
+  }
+
+  .maingrid {
+      display: grid;
+      padding-left: 10%;
+      padding-right: 10%;
+      grid-template-columns: repeat(5, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      grid-column-gap: 10px;
+      grid-row-gap: 10px; 
+  }
+</style>
